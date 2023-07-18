@@ -49,17 +49,23 @@
       #preloader {
         transition: opacity 1s ease-in-out;
       }
+
+      #start-hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
       
     </style>
     
   </head>
-  <body class="h-full bg-rose-100 main-font font-bold">
+  <body class="h-full bg-rose-100 main-font font-bold start-hidden">
     <div id="preloader" class="z-50 fixed top-0 left-0 h-screen w-screen flex flex-col justify-around bg-white">
       <div class=" py-10" style="height: 8rem;">
-        <h1 class="text-5xl wedding-font text-center">МЫ ЖЕНИМСЯ!</h1>
+        <h1 class="text-5xl wedding-font text-center">МЫ<br>ЖЕНИМСЯ!</h1>
       </div>
     </div>
-    <div class="grid justify-items-center">
+    <div class="grid justify-items-center" id="start-hidden">
       <div 
         class="relative shadow-xl shadow-gray-900 w-screen sm:w-2/5 h-screen flex items-center justify-center bg-cover"
         style="background-image: url(/img/fp_bg.jpg)"
@@ -442,6 +448,9 @@
           if (preloader) {
             preloader.style.opacity = "0";
             setTimeout(function() {
+              var contentContainer = document.getElementById('start-hidden');
+              contentContainer.style.visibility = 'visible';
+              contentContainer.style.opacity = '1';
               preloader.style.display = "none";
             }, 1000); // Wait for 1 second after fading out for removal
           }
